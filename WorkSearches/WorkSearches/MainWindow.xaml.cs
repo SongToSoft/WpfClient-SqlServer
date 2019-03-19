@@ -36,7 +36,7 @@ namespace WorkSearches
             }
             else
             {
-                sqlCommand.CommandText = "SELECT * FROM [Company] WHERE(CompanyName='" + CompanySearchTextBox.Text + "') AND (Vacancy='" + CompanySearchTextBox.Text + "')" ;
+                sqlCommand.CommandText = "SELECT * FROM [Company] WHERE(CompanyName='" + CompanySearchTextBox.Text + "') OR (Vacancy='" + CompanySearchTextBox.Text + "')" ;
             }
             sqlCommand.Connection = sqlConnection;
 
