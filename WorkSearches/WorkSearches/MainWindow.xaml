@@ -20,6 +20,7 @@
                             <TextBox HorizontalAlignment="Left" Height="23" Margin="7,7,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="170"/>
                             <Button Content="Search" HorizontalAlignment="Left" Margin="232,5,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="Button_Click"/>
                             <TextBox Name="CompanySearchTextBox" HorizontalAlignment="Left" Height="23" Margin="7,7,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170"/>
+                            <Label Name="CompanySearchLabel" Content="" HorizontalAlignment="Left" Margin="343,5,0,0" VerticalAlignment="Top" Height="25" Width="139"/>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Add Company">
@@ -29,12 +30,14 @@
                             <TextBox Name="AddCompanyNameTextBox" HorizontalAlignment="Left" Height="25" Margin="237,20,0,0" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Width="160"/>
                             <TextBox Name="AddCompanyVacancyTextBox" HorizontalAlignment="Left" Height="25" Margin="412,20,0,0" TextWrapping="Wrap" Text="Vacancy" VerticalAlignment="Top" Width="165"/>
                             <TextBox Name="AddCompanySalaryTextBox" HorizontalAlignment="Left" Height="23" Margin="592,20,0,0" TextWrapping="Wrap" Text="Salary" VerticalAlignment="Top" Width="165"/>
+                            <Label Name="AddCompanyLabel" Content="" HorizontalAlignment="Left" Margin="64,81,0,0" VerticalAlignment="Top" Height="35" Width="240"/>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Del Company">
                         <Grid Background="#FFE5E5E5">
                             <Button Content="Del Company" HorizontalAlignment="Left" Margin="27,15,0,0" VerticalAlignment="Top" Width="100" Height="35" Click="Button_Click_2"/>
-                            <TextBox Name="DelCompanyNameTextBox" HorizontalAlignment="Left" Height="25" Margin="172,20,0,0" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Width="235"/>
+                            <TextBox Name="DelCompanyIdTextBox" HorizontalAlignment="Left" Height="25" Margin="172,20,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Width="235"/>
+                            <Label Name="DelCompanyLabel" Content="" HorizontalAlignment="Left" Margin="451,20,0,0" VerticalAlignment="Top" Width="274"/>
                         </Grid>
 
                     </TabItem>
@@ -45,6 +48,7 @@
                             <TextBox Name="ChangeCompanyNameTextBox" HorizontalAlignment="Left" Height="25" Margin="237,20,0,0" TextWrapping="Wrap" Text="Company Name" VerticalAlignment="Top" Width="160"/>
                             <TextBox Name="ChangeCompanyVacancyTextBox" HorizontalAlignment="Left" Height="25" Margin="412,20,0,0" TextWrapping="Wrap" Text="Vacancy" VerticalAlignment="Top" Width="165"/>
                             <TextBox Name="ChangeCompanySalaryTextBox" HorizontalAlignment="Left" Height="23" Margin="592,20,0,0" TextWrapping="Wrap" Text="Salary" VerticalAlignment="Top" Width="165"/>
+                            <Label Name="ChangeCompanyLabel" Content="" HorizontalAlignment="Left" Margin="27,81,0,0" VerticalAlignment="Top" Width="366"/>
                         </Grid>
                     </TabItem>
                 </TabControl>
