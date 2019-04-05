@@ -13,9 +13,6 @@ C:\Users\dbogdano\source\repos\WorkSearches\WorkSearches\obj\Debug\WorkSearches.
 C:\Users\dbogdano\source\repos\WorkSearches\WorkSearches\obj\Debug\WorkSearches.csproj.CoreCompileInputs.cache
 C:\Users\dbogdano\source\repos\WorkSearches\WorkSearches\obj\Debug\WorkSearches.exe
 C:\Users\dbogdano\source\repos\WorkSearches\WorkSearches\obj\Debug\WorkSearches.pdb
-C:\Users\dbogdano\source\repos\WorkSearches\WorkSearches\bin\Debug\Database.mdf
-C:\Users\dbogdano\source\repos\WorkSearches\WorkSearches\bin\Debug\Database_log.ldf
-C:\Users\dbogdano\source\repos\WorkSearches\WorkSearches\obj\Debug\WorkSearches_Content.g.cs
 C:\Users\dbogdano\source\repos\WorkSearches\WorkSearches\bin\Debug\EntityFramework.dll
 C:\Users\dbogdano\source\repos\WorkSearches\WorkSearches\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\dbogdano\source\repos\WorkSearches\WorkSearches\bin\Debug\Microsoft.VisualStudio.Data.Tools.SqlObjectExplorer.dll
