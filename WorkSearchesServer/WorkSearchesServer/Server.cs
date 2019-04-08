@@ -2,7 +2,6 @@
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
-using System.Data.SqlClient;
 using System.Data;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -12,8 +11,9 @@ namespace WorkSearchesServer
     static class Server
     {
         static private int status = 0;
-        static private string command = "empty";
-        static private string companySearch = "", id = "", companyName = "", vacancy = "", salary = "";
+        static private string command = "";
+        static private string companySearch = "", companyId = "", companyName = "", companyVacancy = "", companySalary = "", companyEmployment = "", companyRequirements = "", companyDescription = "";
+        static private string seekerSearch = "", seekerId = "", seekerName = "", seekerVacancy = "", seekerSalary = "", seekerEducation = "", seekerMobileNumber = "", seekerDescription = "";
         static private int port = 4020;
 
         static public void Run()
@@ -27,7 +27,7 @@ namespace WorkSearchesServer
                 listenSocket.Bind(ipPoint);
                 listenSocket.Listen(10);
 
-                Console.WriteLine("The server is running. Waiting for connections...");
+                Console.WriteLine("Сервер запущен и ожидает подключения...");
 
                 while (true)
                 {
@@ -42,10 +42,14 @@ namespace WorkSearchesServer
                     }
                     while (handler.Available > 0);
 
-                    if (status == 0 && ((builder.ToString() == "SELECT") ||
-                                        (builder.ToString() == "ADD")    ||
-                                        (builder.ToString() == "DELETE") || 
-                                        (builder.ToString() == "UPDATE")))
+                    if (status == 0 && ((builder.ToString() == "SELECT COMPANY") ||
+                                        (builder.ToString() == "ADD COMPANY")    ||
+                                        (builder.ToString() == "DELETE COMPANY") || 
+                                        (builder.ToString() == "UPDATE COMPANY") ||
+                                        (builder.ToString() == "SELECT SEEKER") ||
+                                        (builder.ToString() == "ADD SEEKER") ||
+                                        (builder.ToString() == "DELETE SEEKER") ||
+                                        (builder.ToString() == "UPDATE SEEKER")))
                     {
                         command = builder.ToString();
                         ++status;
@@ -54,7 +58,7 @@ namespace WorkSearchesServer
                     {
                         if (status == 1)
                         {
-                            if (command == "SELECT")
+                            if (command == "SELECT COMPANY")
                             {
                                 companySearch = builder.ToString();
                                 DataTable dataTable = SqlCommander.SelectCompany(companySearch);
@@ -62,51 +66,62 @@ namespace WorkSearchesServer
                                 handler.Send(responseData);
                                 Clear();
                             }
-                            if (command == "ADD")
+                            if (command == "ADD COMPANY")
                             {
-                                if (id == "")
+                                if (companyName == "")
                                 {
-                                    id = builder.ToString();
+                                    companyName = builder.ToString();
                                 }
                                 else
                                 {
-                                    if (companyName == "")
+                                    if (companyVacancy == "")
                                     {
-                                        companyName = builder.ToString();
+                                        companyVacancy = builder.ToString();
                                     }
                                     else
                                     {
-                                        if (vacancy == "")
+                                        if (companySalary == "")
                                         {
-                                            vacancy = builder.ToString();
+                                            companySalary = builder.ToString();
                                         }
                                         else
                                         {
-                                            if (salary == "")
+                                            if (companyEmployment == "")
                                             {
-                                                salary = builder.ToString();
-                                                string response = SqlCommander.AddCompany(id, companyName, vacancy, salary);
-                                                data = Encoding.Unicode.GetBytes(response);
-                                                handler.Send(data);
-                                                Clear();
+                                                companyEmployment = builder.ToString();
+                                            }
+                                            else
+                                            {
+                                                if (companyRequirements == "")
+                                                {
+                                                    companyRequirements = builder.ToString();
+                                                }
+                                                else
+                                                {
+                                                    companyDescription = builder.ToString();
+                                                    string response = SqlCommander.AddCompany(companyName, companyVacancy, companySalary, companyEmployment, companyRequirements, companyDescription);
+                                                    data = Encoding.Unicode.GetBytes(response);
+                                                    handler.Send(data);
+                                                    Clear();
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
-                            if (command == "DELETE")
+                            if (command == "DELETE COMPANY")
                             {
-                                id = builder.ToString();
-                                string response = SqlCommander.DelCompany(id);
+                                companyId = builder.ToString();
+                                string response = SqlCommander.DelCompany(companyId);
                                 data = Encoding.Unicode.GetBytes(response);
                                 handler.Send(data);
                                 Clear();
                             }
-                            if (command == "UPDATE")
+                            if (command == "UPDATE COMPANY")
                             {
-                                if (id == "")
+                                if (companyId == "")
                                 {
-                                    id = builder.ToString();
+                                    companyId = builder.ToString();
                                 }
                                 else
                                 {
@@ -116,19 +131,146 @@ namespace WorkSearchesServer
                                     }
                                     else
                                     {
-                                        if (vacancy == "")
+                                        if (companyVacancy == "")
                                         {
-                                            vacancy = builder.ToString();
+                                            companyVacancy = builder.ToString();
                                         }
                                         else
                                         {
-                                            if (salary == "")
+                                            if (companySalary == "")
                                             {
-                                                salary = builder.ToString();
-                                                string response = SqlCommander.ChangeCompany(id, companyName, vacancy, salary);
-                                                data = Encoding.Unicode.GetBytes(response);
-                                                handler.Send(data);
-                                                Clear();
+                                                companySalary = builder.ToString();
+                                            }
+                                            else
+                                            {
+                                                if (companyEmployment == "")
+                                                {
+                                                    companyEmployment = builder.ToString();
+                                                }
+                                                else
+                                                {
+                                                    if (companyRequirements == "")
+                                                    {
+                                                        companyRequirements = builder.ToString();
+                                                    }
+                                                    else
+                                                    {
+                                                        companyDescription = builder.ToString();
+                                                        string response = SqlCommander.ChangeCompany(companyId, companyName, companyVacancy, companySalary, companyEmployment, companyRequirements, companyDescription);
+                                                        data = Encoding.Unicode.GetBytes(response);
+                                                        handler.Send(data);
+                                                        Clear();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (command == "SELECT SEEKER")
+                            {
+                                seekerSearch = builder.ToString();
+                                DataTable dataTable = SqlCommander.SelectSeeker(seekerSearch);
+                                byte[] responseData = GetBinaryFormatData(dataTable);
+                                handler.Send(responseData);
+                                Clear();
+                            }
+                            if (command == "ADD SEEKER")
+                            {
+                                if (seekerName == "")
+                                {
+                                    seekerName = builder.ToString();
+                                }
+                                else
+                                {
+                                    if (seekerVacancy == "")
+                                    {
+                                        seekerVacancy = builder.ToString();
+                                    }
+                                    else
+                                    {
+                                        if (seekerSalary == "")
+                                        {
+                                            seekerSalary = builder.ToString();
+                                        }
+                                        else
+                                        {
+                                            if (seekerEducation == "")
+                                            {
+                                                seekerEducation = builder.ToString();
+                                            }
+                                            else
+                                            {
+                                                if (seekerMobileNumber == "")
+                                                {
+                                                    seekerMobileNumber = builder.ToString();
+                                                }
+                                                else
+                                                {
+                                                    seekerDescription = builder.ToString();
+                                                    string response = SqlCommander.AddSeeker(seekerName, seekerVacancy, seekerSalary, seekerEducation, seekerMobileNumber, seekerDescription);
+                                                    data = Encoding.Unicode.GetBytes(response);
+                                                    handler.Send(data);
+                                                    Clear();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (command == "DELETE SEEKER")
+                            {
+                                seekerId = builder.ToString();
+                                string response = SqlCommander.DelSeeker(seekerId);
+                                data = Encoding.Unicode.GetBytes(response);
+                                handler.Send(data);
+                                Clear();
+                            }
+                            if (command == "UPDATE SEEKER")
+                            {
+                                if (seekerId == "")
+                                {
+                                    seekerId = builder.ToString();
+                                }
+                                else
+                                {
+                                    if (seekerName == "")
+                                    {
+                                        seekerName = builder.ToString();
+                                    }
+                                    else
+                                    {
+                                        if (seekerVacancy == "")
+                                        {
+                                            seekerVacancy = builder.ToString();
+                                        }
+                                        else
+                                        {
+                                            if (seekerSalary == "")
+                                            {
+                                                seekerSalary = builder.ToString();
+                                            }
+                                            else
+                                            {
+                                                if (seekerEducation == "")
+                                                {
+                                                    seekerEducation = builder.ToString();
+                                                }
+                                                else
+                                                {
+                                                    if (seekerMobileNumber == "")
+                                                    {
+                                                        seekerMobileNumber = builder.ToString();
+                                                    }
+                                                    else
+                                                    {
+                                                        seekerDescription = builder.ToString();
+                                                        string response = SqlCommander.ChangeSeeker(seekerId, seekerName, seekerVacancy, seekerSalary, seekerEducation, seekerMobileNumber, seekerDescription);
+                                                        data = Encoding.Unicode.GetBytes(response);
+                                                        handler.Send(data);
+                                                        Clear();
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -137,13 +279,12 @@ namespace WorkSearchesServer
                         }
                         else
                         {
-                            string message = "Your message has been delivered";
+                            Console.WriteLine(builder.ToString());
+                            string message = "Ваше сообщение доставлено";
                             data = Encoding.Unicode.GetBytes(message);
                             handler.Send(data);
                         }
                     }
-
-                    //Console.WriteLine(DateTime.Now.ToShortTimeString() + " status: " + status + " command: " + command + " message: " + builder.ToString());
 
                     handler.Shutdown(SocketShutdown.Both);
                     handler.Close();
@@ -172,12 +313,25 @@ namespace WorkSearchesServer
         static private void Clear()
         {
             status = 0;
-            command = "empty";
+            command = "";
+
             companySearch = "";
-            id = "";
+            companyId = "";
             companyName = "";
-            vacancy = "";
-            salary = "";
+            companyVacancy = "";
+            companySalary = "";
+            companyEmployment = "";
+            companyRequirements = "";
+            companyDescription = "";
+
+            seekerSearch = "";
+            seekerId = "";
+            seekerName = "";
+            seekerVacancy = "";
+            seekerSalary = "";
+            seekerEducation = "";
+            seekerMobileNumber = "";
+            seekerDescription = "";
         }
     }
 }
