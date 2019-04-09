@@ -43,11 +43,11 @@ namespace WorkSearchesServer
             SqlCommand sqlCommand = new SqlCommand();
             if (seekerSearch == "@")
             {
-                Console.WriteLine("Поиск в таблице Соискатели: " + seekerSearch);
                 sqlCommand.CommandText = "SELECT * FROM [Job_Seeker]";
             }
             else
             {
+                Console.WriteLine("Поиск в таблице Соискатели: " + seekerSearch);
                 sqlCommand.CommandText = "SELECT * FROM [Job_Seeker] WHERE(Name=N'" + seekerSearch.Normalize() + "') OR (DesiredVacancy=N'" + seekerSearch.Normalize() + "') OR (Education=N'" + seekerSearch.Normalize() + "')";
             }
             sqlCommand.Connection = sqlConnection;
@@ -66,8 +66,9 @@ namespace WorkSearchesServer
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand.CommandText = "INSERT into [Company](Id, CompanyName, Vacancy, Salary, Employment, Requirements, Description)values(@Id, @CompanyName, @Vacancy, @Salary, @Employment, @Requirements, @Description)";
 
-            string id = (Convert.ToString(GetCount("[Company]") + 1));
-
+            //string id = (Convert.ToString(GetCount("[Company]") + 1));
+            string id = (Convert.ToString(GetId("[Company]") + 1));
+    
             sqlCommand.Connection = sqlConnection;
             sqlCommand.Parameters.AddWithValue("@Id", id);
             sqlCommand.Parameters.AddWithValue("@CompanyName", companyName);
@@ -97,7 +98,8 @@ namespace WorkSearchesServer
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand.CommandText = "INSERT into [Job_Seeker](Id, Name, DesiredVacancy, DesiredSalary, Education, MobileNumber, Description)values(@Id, @Name, @DesiredVacancy, @DesiredSalary, @Education, @MobileNumber, @Description)";
 
-            string id = (Convert.ToString(GetCount("[Job_Seeker]") + 1));
+            //string id = (Convert.ToString(GetCount("[Job_Seeker]") + 1));
+            string id = (Convert.ToString(GetId("[Job_Seeker]") + 1));
 
             sqlCommand.Connection = sqlConnection;
             sqlCommand.Parameters.AddWithValue("@Id", id);
@@ -222,11 +224,20 @@ namespace WorkSearchesServer
                 return response;
             }
         }
- 
+
+        //Get the number of rows in table
         static public int GetCount(string tableName)
         {
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand.CommandText = "SELECT COUNT(*) FROM" + tableName;
+            sqlCommand.Connection = sqlConnection;
+            return (int)sqlCommand.ExecuteScalar();
+        }
+
+        static public int GetId(string tableName)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandText = "SELECT MAX(Id) FROM " + tableName;
             sqlCommand.Connection = sqlConnection;
             return (int)sqlCommand.ExecuteScalar();
         }
