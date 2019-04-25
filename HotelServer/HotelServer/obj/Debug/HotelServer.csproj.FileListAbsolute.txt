@@ -1,0 +1,9 @@
+C:\Users\dbogdano\source\repos\HotelServer\HotelServer\bin\Debug\HotelDatabase.mdf
+C:\Users\dbogdano\source\repos\HotelServer\HotelServer\bin\Debug\HotelDatabase_log.ldf
+C:\Users\dbogdano\source\repos\HotelServer\HotelServer\bin\Debug\HotelServer.exe.config
+C:\Users\dbogdano\source\repos\HotelServer\HotelServer\bin\Debug\HotelServer.exe
+C:\Users\dbogdano\source\repos\HotelServer\HotelServer\bin\Debug\HotelServer.pdb
+C:\Users\dbogdano\source\repos\HotelServer\HotelServer\obj\Debug\HotelServer.csprojAssemblyReference.cache
+C:\Users\dbogdano\source\repos\HotelServer\HotelServer\obj\Debug\HotelServer.csproj.CoreCompileInputs.cache
+C:\Users\dbogdano\source\repos\HotelServer\HotelServer\obj\Debug\HotelServer.exe
+C:\Users\dbogdano\source\repos\HotelServer\HotelServer\obj\Debug\HotelServer.pdb

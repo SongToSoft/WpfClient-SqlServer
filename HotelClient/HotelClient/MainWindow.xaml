@@ -1,0 +1,174 @@
+﻿<Window x:Class="HotelClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelClient"
+        mc:Ignorable="d"
+	    Title="HotelClient" Height="450" Width="800">
+    <TabControl Margin="-1,2,-1,5">
+        <TabItem Header="Главная страница" Margin="0,-2,-14,0" HorizontalAlignment="Left" Width="124">
+            <Grid Background="#FFE5E5E5">
+                <Image Name="ImageHotel" Margin="10,24,324,31"/>
+                <Label Name="MainLabel" FontSize="18" Content="Отель Mitsui Garden Hotel &#10;Gotanda, открытый в июне 2018 &#10;года, расположен в районе&#10;Синагава в Токио, в 2,2 км от &#10;сада Эбису и в 3,9 км от холмов &#10;Роппонги." Margin="0,37,10,31" HorizontalAlignment="Right" Width="309" />
+            </Grid>
+        </TabItem>
+        <TabItem Header="Администрирование" Margin="1,-2,-42,0">
+            <Grid Background="#FFE5E5E5">
+                <TabControl Margin="-3,-5,1,-11">
+                    <TabItem Header="Вывод заселившихся" Margin="-2,-2,-29,2" Height="24" VerticalAlignment="Bottom">
+                        <Grid Background="#FFE5E5E5">
+                            <Grid Margin="-8,35,-8,2">
+                                <DataGrid Name="AccommondationDataGrid" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                </DataGrid>
+                            </Grid>
+                            <TextBox HorizontalAlignment="Left" Height="23" Margin="7,7,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="170"/>
+                            <Button Content="Поиск" HorizontalAlignment="Left" Margin="232,5,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="SearchAccommondation"/>
+                            <TextBox Name="AccommondationSearchTextBox" HorizontalAlignment="Left" Height="23" Margin="7,7,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170"/>
+                            <Label Name="AccommondationSearchLabel" Content="" Margin="343,5,24,0" VerticalAlignment="Top" Height="25"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Вывод броней" Margin="30,0,-61,0" Height="24" VerticalAlignment="Bottom">
+                        <Grid Background="#FFE5E5E5">
+                            <Grid Margin="-8,35,-8,2">
+                                <DataGrid Name="BookingDataGrid" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                </DataGrid>
+                            </Grid>
+                            <TextBox HorizontalAlignment="Left" Height="23" Margin="7,7,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="170"/>
+                            <Button Content="Поиск" HorizontalAlignment="Left" Margin="232,5,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="SearchBooking"/>
+                            <TextBox Name="BookingSearchTextBox" HorizontalAlignment="Left" Height="23" Margin="7,7,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170"/>
+                            <Label Name="BookingSearchLabel" Content="" Margin="343,5,24,0" VerticalAlignment="Top" Height="25"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Заселить постояльцев" Margin="61,0,-65,-2">
+                        <Grid Background="#FFE5E5E5">
+                            <Button Content="Заселить" HorizontalAlignment="Left" Margin="33,16,0,0" VerticalAlignment="Top" Width="120" Height="60" Click="AddAccommondation"/>
+                            <TextBox Name="AddAccommondationNameTextBox" HorizontalAlignment="Left" Height="25" Margin="203,31,0,0" TextWrapping="Wrap" Text="Фамилия постояльцев" VerticalAlignment="Top" Width="211"/>
+                            <TextBox Name="AddAccommondationNumberTextBox" HorizontalAlignment="Left" Height="25" Margin="438,31,0,0" TextWrapping="Wrap" Text="Количество людей" VerticalAlignment="Top" Width="129"/>
+                            <Label Name="AddAccommondationLabel" Content="" HorizontalAlignment="Left" Margin="33,326,0,0" VerticalAlignment="Top" Height="25" Width="729"/>
+                            <TextBox x:Name="AddAccommondationDateTextBox" HorizontalAlignment="Left" Height="25" Margin="203,70,0,0" TextWrapping="Wrap" Text="Дата въезда" VerticalAlignment="Top" Width="211"/>
+                            <TextBox x:Name="AddAccommondationDurationTextBox" HorizontalAlignment="Left" Height="27" Margin="438,70,0,0" TextWrapping="Wrap" Text="Продолжительность" VerticalAlignment="Top" Width="120"/>
+                            <CheckBox Name="AddAccommondationCleanCheckBox" Content="Уборка" HorizontalAlignment="Left" Margin="203,114,0,0" VerticalAlignment="Top" Height="25" Width="211" FontSize="17"/>
+                            <CheckBox x:Name="AddAccommondationEatCheckBox" Content="Завтрак" HorizontalAlignment="Left" Margin="438,114,0,0" VerticalAlignment="Top" Height="25" Width="211" FontSize="17"/>
+                            <ComboBox Name ="AddAccommondationComboBox" HorizontalAlignment="Left" Margin="585,31,0,0" VerticalAlignment="Top" Width="177" Height="32">
+                                <TextBlock>Standart</TextBlock>
+                                <TextBlock>Studio</TextBlock>
+                                <TextBlock>Family Room</TextBlock>
+                                <TextBlock>Duplex</TextBlock>
+                                <TextBlock>De Luxe</TextBlock>
+                                <TextBlock>Junior Suite</TextBlock>
+                                <TextBlock>Suite</TextBlock>
+                                <TextBlock>Residence</TextBlock>
+                                <TextBlock>Apartament</TextBlock>
+                                <TextBlock>Honeymoon Room</TextBlock>
+                            </ComboBox>
+                            <Button Content="Расчитать стоимость" HorizontalAlignment="Left" Margin="33,159,0,0" VerticalAlignment="Top" Width="120" Height="60" Click="GetPriceAccommondationButton"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Выселить постояльцев" Margin="61,0,-65,-2">
+                        <Grid Background="#FFE5E5E5">
+                            <Button Content="Выселить" HorizontalAlignment="Left" Margin="33,16,0,0" VerticalAlignment="Top" Width="120" Height="60" Click="DelAccommondation"/>
+                            <TextBox x:Name="DelAccommondationIdTextBox" HorizontalAlignment="Left" Height="25" Margin="203,31,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Width="211"/>
+                            <Label x:Name="DelAccommondationLabel" Content="" HorizontalAlignment="Left" Margin="33,326,0,0" VerticalAlignment="Top" Height="25" Width="729"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Изменить размещение постояльцев" Margin="65,0,-65,-2">
+                        <Grid Background="#FFE5E5E5">
+                            <Button Content="Изменить" HorizontalAlignment="Left" Margin="33,70,0,0" VerticalAlignment="Top" Width="120" Height="60" Click="ChangeAccommondation"/>
+                            <TextBox x:Name="ChangeAccommondationNameTextBox" HorizontalAlignment="Left" Height="25" Margin="203,31,0,0" TextWrapping="Wrap" Text="Фамилия постояльцев" VerticalAlignment="Top" Width="211"/>
+                            <TextBox x:Name="ChangeAccommondationNumberTextBox" HorizontalAlignment="Left" Height="25" Margin="438,31,0,0" TextWrapping="Wrap" Text="Количество людей" VerticalAlignment="Top" Width="129"/>
+                            <Label x:Name="ChangeAccommondationLabel" Content="" HorizontalAlignment="Left" Margin="33,326,0,0" VerticalAlignment="Top" Height="25" Width="729"/>
+                            <TextBox x:Name="ChangeAccommondationDateTextBox" HorizontalAlignment="Left" Height="25" Margin="203,70,0,0" TextWrapping="Wrap" Text="Дата въезда" VerticalAlignment="Top" Width="211"/>
+                            <TextBox x:Name="ChangeAccommondationDurationTextBox" HorizontalAlignment="Left" Height="27" Margin="438,70,0,0" TextWrapping="Wrap" Text="Продолжительность" VerticalAlignment="Top" Width="120"/>
+                            <CheckBox x:Name="ChangeAccommondationCleanCheckBox" Content="Уборка" HorizontalAlignment="Left" Margin="203,114,0,0" VerticalAlignment="Top" Height="25" Width="211" FontSize="17"/>
+                            <CheckBox x:Name="ChangeAccommondationEatCheckBox" Content="Завтрак" HorizontalAlignment="Left" Margin="438,114,0,0" VerticalAlignment="Top" Height="25" Width="211" FontSize="17"/>
+                            <ComboBox x:Name ="ChangeAccommondationComboBox" HorizontalAlignment="Left" Margin="585,31,0,0" VerticalAlignment="Top" Width="177" Height="32">
+                                <TextBlock><Run Text="Standart"/></TextBlock>
+                                <TextBlock><Run Text="Studio"/></TextBlock>
+                                <TextBlock><Run Text="Family Room"/></TextBlock>
+                                <TextBlock><Run Text="Duplex"/></TextBlock>
+                                <TextBlock><Run Text="De Luxe"/></TextBlock>
+                                <TextBlock><Run Text="Junior Suite"/></TextBlock>
+                                <TextBlock><Run Text="Suite"/></TextBlock>
+                                <TextBlock><Run Text="Residence"/></TextBlock>
+                                <TextBlock><Run Text="Apartament"/></TextBlock>
+                                <TextBlock><Run Text="Honeymoon Room"/></TextBlock>
+                            </ComboBox>
+                            <TextBox x:Name="ChangeAccommondationIdTextBox" HorizontalAlignment="Left" Height="26" Margin="33,31,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Width="120"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <Rectangle Name="AuthenticationRectangle" Fill="#FFF4F4F5" Margin="-3,-5,0,-11" Stroke="Black"/>
+                <PasswordBox Name="LoginTextBox" HorizontalAlignment="Left" Margin="273,105,0,0" Width="213" Height="33" VerticalAlignment="Top"/>
+                <PasswordBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Margin="273,176,0,0" Width="213" Height="33" VerticalAlignment="Top"/>
+                <Button Name="AuthenticationButton"  Content="Залогиниться" Margin="273,228,0,0" Click="Authentication" HorizontalAlignment="Left" Width="213" Height="54" VerticalAlignment="Top"/>
+                <Label Name="AuthenticationLabel" Content="          Введи логин и пароль" HorizontalAlignment="Left" Margin="273,69,0,0" Width="213" Height="26" VerticalAlignment="Top"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Бронирование" Margin="43,-2,-72,0">
+            <Grid Background="#FFE5E5E5">
+                <TabControl Margin="-3,-5,1,-11">
+                    <TabItem Header="Забронировать" Margin="0,0,-41,-2">
+                        <Grid Background="#FFE5E5E5">
+                            <Button Content="Забронировать" HorizontalAlignment="Left" Margin="33,16,0,0" VerticalAlignment="Top" Width="120" Height="60" Click="AddBooking"/>
+                            <TextBox x:Name="AddBookingNameTextBox" HorizontalAlignment="Left" Height="25" Margin="203,31,0,0" TextWrapping="Wrap" Text="Фамилия постояльцев" VerticalAlignment="Top" Width="211"/>
+                            <TextBox x:Name="AddBookingNumberTextBox" HorizontalAlignment="Left" Height="25" Margin="438,31,0,0" TextWrapping="Wrap" Text="Количество людей" VerticalAlignment="Top" Width="129"/>
+                            <Label x:Name="AddBookingLabel" Content="" HorizontalAlignment="Left" Margin="33,326,0,0" VerticalAlignment="Top" Height="25" Width="729"/>
+                            <TextBox x:Name="AddBookingDateTextBox" HorizontalAlignment="Left" Height="25" Margin="203,70,0,0" TextWrapping="Wrap" Text="Дата въезда" VerticalAlignment="Top" Width="211"/>
+                            <TextBox x:Name="AddBookingDurationTextBox" HorizontalAlignment="Left" Height="27" Margin="438,70,0,0" TextWrapping="Wrap" Text="Продолжительность" VerticalAlignment="Top" Width="120"/>
+                            <CheckBox x:Name="AddBookingCleanCheckBox" Content="Уборка" HorizontalAlignment="Left" Margin="203,114,0,0" VerticalAlignment="Top" Height="25" Width="211" FontSize="17"/>
+                            <CheckBox x:Name="AddBookingEatCheckBox" Content="Завтрак" HorizontalAlignment="Left" Margin="438,114,0,0" VerticalAlignment="Top" Height="25" Width="211" FontSize="17"/>
+                            <ComboBox x:Name ="AddBookingComboBox" HorizontalAlignment="Left" Margin="585,31,0,0" VerticalAlignment="Top" Width="177" Height="32">
+                                <TextBlock><Run Text="Standart"/></TextBlock>
+                                <TextBlock><Run Text="Studio"/></TextBlock>
+                                <TextBlock><Run Text="Family Room"/></TextBlock>
+                                <TextBlock><Run Text="Duplex"/></TextBlock>
+                                <TextBlock><Run Text="De Luxe"/></TextBlock>
+                                <TextBlock><Run Text="Junior Suite"/></TextBlock>
+                                <TextBlock><Run Text="Suite"/></TextBlock>
+                                <TextBlock><Run Text="Residence"/></TextBlock>
+                                <TextBlock><Run Text="Apartament"/></TextBlock>
+                                <TextBlock><Run Text="Honeymoon Room"/></TextBlock>
+                            </ComboBox>
+                            <Button Content="Расчитать стоимость" HorizontalAlignment="Left" Margin="33,159,0,0" VerticalAlignment="Top" Width="120" Height="60" Click="GetPriceBookingButton"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Отменить бронь" Margin="41,0,-65,-2">
+                        <Grid Background="#FFE5E5E5">
+                            <Button Content="Выселить" HorizontalAlignment="Left" Margin="33,16,0,0" VerticalAlignment="Top" Width="120" Height="60" Click="DelBooking"/>
+                            <TextBox x:Name="DelBookingIdTextBox" HorizontalAlignment="Left" Height="25" Margin="203,31,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Width="211"/>
+                            <Label x:Name="DelBookingLabel" Content="" HorizontalAlignment="Left" Margin="33,326,0,0" VerticalAlignment="Top" Height="25" Width="729"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Изменить бронь" Margin="61,0,-65,-2">
+                        <Grid Background="#FFE5E5E5">
+                            <Button Content="Изменить" HorizontalAlignment="Left" Margin="33,70,0,0" VerticalAlignment="Top" Width="120" Height="60" Click="ChangeBooking"/>
+                            <TextBox x:Name="ChangeBookingNameTextBox" HorizontalAlignment="Left" Height="25" Margin="203,31,0,0" TextWrapping="Wrap" Text="Фамилия постояльцев" VerticalAlignment="Top" Width="211"/>
+                            <TextBox x:Name="ChangeBookingNumberTextBox" HorizontalAlignment="Left" Height="25" Margin="438,31,0,0" TextWrapping="Wrap" Text="Количество людей" VerticalAlignment="Top" Width="129"/>
+                            <Label x:Name="ChangeBookingLabel" Content="" HorizontalAlignment="Left" Margin="33,326,0,0" VerticalAlignment="Top" Height="25" Width="729"/>
+                            <TextBox x:Name="ChangeBookingDateTextBox" HorizontalAlignment="Left" Height="25" Margin="203,70,0,0" TextWrapping="Wrap" Text="Дата въезда" VerticalAlignment="Top" Width="211"/>
+                            <TextBox x:Name="ChangeBookingDurationTextBox" HorizontalAlignment="Left" Height="27" Margin="438,70,0,0" TextWrapping="Wrap" Text="Продолжительность" VerticalAlignment="Top" Width="120"/>
+                            <CheckBox x:Name="ChangeBookingCleanCheckBox" Content="Уборка" HorizontalAlignment="Left" Margin="203,114,0,0" VerticalAlignment="Top" Height="25" Width="211" FontSize="17"/>
+                            <CheckBox x:Name="ChangeBookingEatCheckBox" Content="Завтрак" HorizontalAlignment="Left" Margin="438,114,0,0" VerticalAlignment="Top" Height="25" Width="211" FontSize="17"/>
+                            <ComboBox x:Name ="ChangeBookingComboBox" HorizontalAlignment="Left" Margin="585,31,0,0" VerticalAlignment="Top" Width="177" Height="32">
+                                <TextBlock><Run Text="Standart"/></TextBlock>
+                                <TextBlock><Run Text="Studio"/></TextBlock>
+                                <TextBlock><Run Text="Family Room"/></TextBlock>
+                                <TextBlock><Run Text="Duplex"/></TextBlock>
+                                <TextBlock><Run Text="De Luxe"/></TextBlock>
+                                <TextBlock><Run Text="Junior Suite"/></TextBlock>
+                                <TextBlock><Run Text="Suite"/></TextBlock>
+                                <TextBlock><Run Text="Residence"/></TextBlock>
+                                <TextBlock><Run Text="Apartament"/></TextBlock>
+                                <TextBlock><Run Text="Honeymoon Room"/></TextBlock>
+                            </ComboBox>
+                            <TextBox x:Name="ChangeBookingIdTextBox" HorizontalAlignment="Left" Height="26" Margin="33,31,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Width="120"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
+	
+	

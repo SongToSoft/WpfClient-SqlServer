@@ -1,0 +1,15 @@
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\HotelClient.csprojAssemblyReference.cache
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\MainWindow.g.cs
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\App.g.cs
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\HotelClient_MarkupCompile.cache
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\HotelClient_MarkupCompile.lref
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\bin\Debug\HotelClient.exe.config
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\bin\Debug\HotelClient.exe
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\bin\Debug\HotelClient.pdb
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\MainWindow.baml
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\HotelClient.g.resources
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\HotelClient.Properties.Resources.resources
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\HotelClient.csproj.GenerateResource.cache
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\HotelClient.csproj.CoreCompileInputs.cache
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\HotelClient.exe
+C:\Users\dbogdano\source\repos\HotelClient\HotelClient\obj\Debug\HotelClient.pdb
