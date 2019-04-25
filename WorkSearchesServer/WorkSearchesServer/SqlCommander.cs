@@ -234,12 +234,21 @@ namespace WorkSearchesServer
             return (int)sqlCommand.ExecuteScalar();
         }
 
-        static public int GetId(string tableName)
-        {
-            SqlCommand sqlCommand = new SqlCommand();
-            sqlCommand.CommandText = "SELECT MAX(Id) FROM " + tableName;
-            sqlCommand.Connection = sqlConnection;
-            return (int)sqlCommand.ExecuteScalar();
+        static public int GetId(string tableName) 
+        { 
+            SqlCommand sqlCommand = new SqlCommand(); 
+            sqlCommand.CommandText = "SELECT MAX(Id) FROM " + tableName; 
+            sqlCommand.Connection = sqlConnection; 
+            object obj = sqlCommand.ExecuteScalar(); 
+            if (obj == DBNull.Value) 
+            { 
+                return 0; 
+            } 
+            else 
+            { 
+                int id = Convert.ToInt32(sqlCommand.ExecuteScalar()); 
+                return id; 
+            } 
         }
     }
 }
