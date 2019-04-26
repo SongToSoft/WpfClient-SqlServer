@@ -1,4 +1,4 @@
 # WPFApplication
-WorkSearchesClient - clien application with WPF interface
+HotelClient - clien application with WPF interface
 
-WorkSearcesServer - server application, run before clien.
+HotelServer - server application, run before clien.
